@@ -62,17 +62,9 @@ fetch(url)
     .then(data => {
         console.log('Logout response:', data);
         window.location.hash = '';  // Clear the hash
+        window.location.href = "index.html"
     })
     .catch(error => {
         console.error('Error logging out:', error);
     });
 });
-
-  
-  
-
-
-
-
-
-
