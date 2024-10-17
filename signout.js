@@ -1,52 +1,59 @@
-const url = "http://127.0.0.1:5000/GetLoggedIn"
+//const url = "http://127.0.0.1:5000/GetLoggedIn";
 
+const url = localStorage.getItem("Server")
+console.log("Server: "+ url)
 
-
-fetch(url)
+fetch(url + "/GetLoggedIn")
   .then(response => {
-    // Check if the response is ok (status code 200-299)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    return response.json();  // Parse the JSON from the response
+    return response.json();
   })
   .then(data => {
-    // Handle the data from the API
     console.log('Response from API:', data);
     for (let name in data) {
         if (data[name].TimeOut === null) {
             document.getElementById("SighnoutCards").insertAdjacentHTML(
-                "beforeend", // Position to insert the HTML
+                "beforeend", 
                 `
-                <div class="card text-center mb-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">${name}</h5>
-                        <p class="card-text">Time in: ${ String(data[name].TimeIn).slice(0,2)}:${ String(data[name].TimeIn).slice(2,4)}</p>
-                        <a href="#Out=${name}" class="btn btn-primary">Sign Out</a>
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3"> <!-- Use responsive column classes -->
+                    <div class="card text-center SighnoutCard" style="width: 100%;"> <!-- Ensure card width is 100% -->
+                        <div class="card-body">
+                            <h5 class="card-title">${name}</h5>
+                            <p class="card-text">Time in: ${ String(data[name].TimeIn).slice(0,2)}:${ String(data[name].TimeIn).slice(2,4)}</p>
+                            <a href="#Out=${name}" class="btn btn-primary signOutButton" data-name="${name}">Sign Out</a>
+                        </div>
                     </div>
                 </div>`
             );
         }
     }
+
+    // Add click event listeners to sign out buttons
+    document.querySelectorAll('.signOutButton').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const name = this.getAttribute('data-name');
+            document.getElementById('signOutName').textContent = name;
+            document.getElementById('confirmSignOut').setAttribute('data-name', name);
+            var myModal = new bootstrap.Modal(document.getElementById('signOutModal'));
+            myModal.show();
+        });
+    });
   })
   .catch(error => {
-    // Handle any errors that occur during the request
     console.error('Error fetching data:', error);
   });
 
 
-  //LOGOUT script
-  $(window).on('hashchange', function() {
-    if (window.location.hash.slice(5) == ""){
-        return
-    }
-        const name = window.location.hash.slice(5);  // Extract the name from the hash
-        console.log("Attempting to log out:", name);  // Log the name
+// LOGOUT script after confirming sign out
+document.getElementById('confirmSignOut').addEventListener('click', function() {
+    const name = this.getAttribute('data-name');  // Get the name to log out
+    console.log("Attempting to log out:", name);
 
-    // Define the URL for the logout API
-    const logoutUrl = `http://127.0.0.1:5000/LogOut?name=${name}`;
-    console.log(logoutUrl)
-    // Send the API call to log out the user
+    const logoutUrl = `http://127.0.0.1:5000/LogOut?LogoutName=${name}`;
+    console.log(logoutUrl);
+
     fetch(logoutUrl, {
         method: 'GET',
         headers: {
@@ -62,7 +69,7 @@ fetch(url)
     .then(data => {
         console.log('Logout response:', data);
         window.location.hash = '';  // Clear the hash
-        window.location.href = "index.html"
+        window.location.href = "index.html";  // Redirect
     })
     .catch(error => {
         console.error('Error logging out:', error);
