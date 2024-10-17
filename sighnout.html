@@ -10,17 +10,17 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-
+    <div id="ServerStatus" class="ServerStatus"></div>
     <p id="Date" class="SmallerDate"></p>
     <a href="./index.html"><button type="button" class="btn btn-outline-warning CancelButton">Cancel</button></a>
     
     <div id="SighnoutCards" class="row SighnoutCards"></div>
 
    <!-- Modal for confirming sign out -->
-<div class="modal fade" id="signOutModal" tabindex="-1" aria-labelledby="signOutModalLabel" aria-hidden="true">
+<div class="modal fade" id="signOutModal" tabindex="-1" aria-labelledby="signOutModalLabel" aria-hidden="true" data-bs-theme="dark">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal-content" >
+            <div class="modal-header" >
                 <h5 class="modal-title" id="signOutModalLabel">Confirm Sign Out</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>

@@ -11,16 +11,21 @@
     
 </head>
 <body>
+    
+    <div id="ServerStatus" class="ServerStatus"></div>
+
     <p id="Date" class="SmallerDate"></p>
+    
     <header>Please enter your name</header>
 <div class="InputText">
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="First & Last name" aria-label="First & Last name" aria-describedby="button-addon2" id="NameInput">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="LogIn()">Submit</button>
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="LogIn()" data-bs-toggle="modal" data-bs-target="#LoggedInModal">Submit</button>
       </div>
       
 </div>
 <a href="./index.html"><button type="button" class="btn btn-outline-warning CancelButton">Cancel</button></a>
+  
 </body>
 <script src="./script.js"></script>
 <script src="./sighin.js"></script>

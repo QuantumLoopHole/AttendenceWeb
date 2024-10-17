@@ -28,6 +28,7 @@ header{
     margin-top: 30vh;
     font-size: 6vw;
 }
+
 .SmallerDate{
     color: aliceblue;
     font-size: xx-large;
@@ -41,7 +42,8 @@ header{
 }
 
 .SighnoutCards{
-margin-left: 5vw;
+margin-left: 1vw;
+margin-right: 1vw;
 }
 
 .TestServerButton{
@@ -54,4 +56,25 @@ margin-left: 5vw;
     border-style:groove;
     margin-left: 2vw;
     color:  rgb(119, 119, 119);
+}
+
+.ServerStatus{
+    float: right;
+    margin-right: 1vw;
+}
+
+.ServerStatusText{
+    float: right;
+    margin-right: 1vw;
+    margin-left: 1vw;
+}
+
+.ServerActive{
+    color: rgb(0, 255, 0);
+}
+
+.MessageString{
+    text-align: center;
+    margin-top: 25vh;
+    font-size: 25vw;
 }

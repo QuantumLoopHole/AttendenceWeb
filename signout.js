@@ -1,6 +1,4 @@
-//const url = "http://127.0.0.1:5000/GetLoggedIn";
-
-const url = localStorage.getItem("Server")
+url = localStorage.getItem("Server")
 console.log("Server: "+ url)
 
 fetch(url + "/GetLoggedIn")
@@ -18,8 +16,8 @@ fetch(url + "/GetLoggedIn")
                 "beforeend", 
                 `
                 <div class="col-sm-6 col-md-4 col-lg-3 mb-3"> <!-- Use responsive column classes -->
-                    <div class="card text-center SighnoutCard" style="width: 100%;"> <!-- Ensure card width is 100% -->
-                        <div class="card-body">
+                    <div class="card text-center SighnoutCard" style="width: 100%;" data-bs-theme="dark"> <!-- Ensure card width is 100% -->
+                        <div class="card-body" >
                             <h5 class="card-title">${name}</h5>
                             <p class="card-text">Time in: ${ String(data[name].TimeIn).slice(0,2)}:${ String(data[name].TimeIn).slice(2,4)}</p>
                             <a href="#Out=${name}" class="btn btn-primary signOutButton" data-name="${name}">Sign Out</a>
@@ -51,7 +49,7 @@ document.getElementById('confirmSignOut').addEventListener('click', function() {
     const name = this.getAttribute('data-name');  // Get the name to log out
     console.log("Attempting to log out:", name);
 
-    const logoutUrl = `http://127.0.0.1:5000/LogOut?LogoutName=${name}`;
+    const logoutUrl = url + `/LogOut?LogoutName=${name}`;
     console.log(logoutUrl);
 
     fetch(logoutUrl, {
@@ -75,3 +73,9 @@ document.getElementById('confirmSignOut').addEventListener('click', function() {
         console.error('Error logging out:', error);
     });
 });
+
+setTimeout(function() {
+    // Your command here
+    window.location.href = "./"
+}, 300000);  // 5 minutes = 5 * 60 * 1000 milliseconds
+    
