@@ -10,13 +10,39 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     
 </head>
+<style>
+    .toast-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1050; 
+    }
+</style>
 <body>
     
+     <!-- Toast -->
+     <div class="toast-container" data-bs-theme="dark">
+        <div id="myToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">You are logged in</strong>
+                <small>Just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Log out if needed
+            </div>
+        </div>
+    </div>
+
     <div id="ServerStatus" class="ServerStatus"></div>
 
     <p id="Date" class="SmallerDate"></p>
     
     <header>Please enter your name</header>
+    
+    
+
 <div class="InputText">
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="First & Last name" aria-label="First & Last name" aria-describedby="button-addon2" id="NameInput">
