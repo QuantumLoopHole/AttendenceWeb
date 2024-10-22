@@ -44,5 +44,4 @@ function checkApiStatus() {
             document.getElementById("LoginLogoutButtons").style.display = "none";        });
 }
 
-// Call the function to check API status every 30 seconds (30000 milliseconds)
 setInterval(checkApiStatus, 3000);

@@ -37,6 +37,15 @@ function LogIn() {
         });
 }
 
+
+// Event listener for the Enter key press
+document.getElementById("NameInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        LogIn();
+    }
+});
+
+
 // Set a timeout to redirect to home after 5 minutes
 setTimeout(function() {
     window.location.href = "./";
